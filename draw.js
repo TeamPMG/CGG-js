@@ -1,6 +1,6 @@
 //created by JPNYKW
 
-var wid=4,hig=4; // for draw engine
+var wid=8,hig=8; // for draw engine
 
 CanvasRenderingContext2D.prototype.drawImageByData=function($Array,$width,$height,$find,$px,$x,$y){
 	let $dy=$y+$px/2;
@@ -26,5 +26,5 @@ CanvasRenderingContext2D.prototype.drawImageByData=function($Array,$width,$heigh
 
 function drawGeneratedImage(generatedData){
       cont.clearRect(0,0,canv.width,canv.height);
-      cont.drawImageByData(generatedData,wid,hig,0,128/4,0,0);
+      cont.drawImageByData(generatedData,wid,hig,0,128/8,0,0);
 }
