@@ -4,7 +4,7 @@ var c = console;
 function init(){
   canv = document.getElementById('output');
   cont = canv.getContext('2d');
-	myOnnxSession = new onnx.InferenceSession({backendHint: 'cpu'});
+	myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'});
 	myOnnxSession.loadModel("./generator.onnx");
 	model = myOnnxSession;
 }
