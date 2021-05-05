@@ -1,5 +1,5 @@
 # CGG-js
 Running CGG model on javascript
 
-#Library used
+# Library used
 * ONNX.js
