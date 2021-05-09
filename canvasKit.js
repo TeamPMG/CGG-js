@@ -27,7 +27,7 @@ CanvasRenderingContext2D.prototype.drawGrid=function(x,y,size,width,height,bold,
   }
 }
 
-CanvasRenderingContext2D.prototype.drawBox=function(x, y, size, bold, color){
+CanvasRenderingContext2D.prototype.drawBox = function(x, y, size, bold, color){
   this.beginPath();
   this.lineWidth=bold;
   this.strokeStyle=color;
