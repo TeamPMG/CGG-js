@@ -34,13 +34,13 @@ CanvasRenderingContext2D.prototype.drawBox=function(x, y, size, bold, color){
   this.strokeRect(x - size / 2, y - size / 2, size, size);
 }
 
-CanvasRenderingContext2D.prototype.drawFillBox=function(x, y, size, color){
+CanvasRenderingContext2D.prototype.drawFillBox = function(x, y, size, color){
   this.beginPath();
   this.fillStyle=color;
   this.fillRect(x - size / 2, y - size / 2, size, size);
 }
 
-CanvasRenderingContext2D.prototype.drawText=function(text,x,y,font,bold,size,color,center,fill){
+CanvasRenderingContext2D.prototype.drawText = function(text, x, y, font, bold, size, color, center, fill){
   !fill && this.lineWidth = bold
   center && (x -= text.length / 2 * (size / 2))
 
