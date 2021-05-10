@@ -1,5 +1,3 @@
-const noiseSize = 256
-
 (() => {
   onload = () => {    
     const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random())
@@ -21,6 +19,7 @@ const noiseSize = 256
     }
     
     // Initialize
+    const noiseSize = 256
     const canvas = document.querySelector('canvas')
     const context = canvas.getContext('2d')
     const myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
