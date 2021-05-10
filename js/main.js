@@ -24,5 +24,7 @@
         console.log(outputTensor)
       });
     }
+
+    document.querySelector('button').addEventListener('click', () => generate())
   }
 })()
