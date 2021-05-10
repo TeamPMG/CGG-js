@@ -20,7 +20,7 @@
     
     // Initialize
     const noise_size = 256
-    const canv = document.getElementById('output')
+    const canv = document.querySelector('canvas')
     const cont = canv.getContext('2d')
 
     const myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
