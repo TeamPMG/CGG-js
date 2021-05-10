@@ -22,7 +22,7 @@ CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, heigh
 }
 
 CanvasRenderingContext2D.prototype.drawGeneratedImage = function(generatedData) {
-  this.clearRect(0, 0, canv.width, canv.height)
+  this.clearRect(0, 0, this.canvas.width, this.canvas.height)
   this.drawImageByData(generatedData, wid, hig, 0, 128 / 8, 0, 0)
 }
 
