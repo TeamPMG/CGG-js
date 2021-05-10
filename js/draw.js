@@ -21,7 +21,8 @@ CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, heigh
   c.log('%cDebug %cSuccessful', 'color:#0093EF;font-weight:bold', 'color:#F53300;font-weight:bold', 'draw an Image')
 }
 
-const drawGeneratedImage = (generatedData) => {
-  cont.clearRect(0, 0, canv.width, canv.height)
-  cont.drawImageByData(generatedData, wid, hig, 0, 128/8, 0, 0)
+CanvasRenderingContext2D.prototype.drawGeneratedImage = function(generatedData) {
+  this.clearRect(0, 0, canv.width, canv.height)
+  this.drawImageByData(generatedData, wid, hig, 0, 128 / 8, 0, 0)
 }
+
