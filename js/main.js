@@ -18,9 +18,9 @@
 
       const noise = new Float32Array(noise_size)
       for (let i = 0; i < noise_size; i++) noise[i] = rnorm()
-      noise = new onnx.Tensor(noise, 'float32', [1, 256])
+      const tensorNoise = new onnx.Tensor(noise, 'float32', [1, 256])
 
-      model.run([noise]).then((output) => {
+      model.run([tensorNoise]).then((output) => {
         console.log('finish running the model')
         const outputTensor = output.values().next().value
         drawGeneratedImage(generatedImage = outputTensor.data)
