@@ -1,16 +1,9 @@
 (() => {
-  onload = () => {
-    const noise_size = 256
-    const canv = document.getElementById('output')
-    const cont = canv.getContext('2d')
-
-    myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
-    myOnnxSession.loadModel('../generator.onnx')
-    const model = myOnnxSession
-    
+  onload = () => {    
     const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random())
 
-    const generate = () => {
+    const generate = (model = null) => {
+      if (model === null) return false
       console.log('called generate function')
 
       const noise = new Float32Array(noise_size)
@@ -24,7 +17,17 @@
         console.log('result', outputTensor)
       });
     }
+    
+    // Initialize
+    const noise_size = 256
+    const canv = document.getElementById('output')
+    const cont = canv.getContext('2d')
 
-    document.querySelector('button').addEventListener('click', () => generate())
+    const myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
+    myOnnxSession.loadModel('../generator.onnx')
+    const model = myOnnxSession
+
+    // Bind
+    document.querySelector('button').addEventListener('click', () => generate(model))
   }
 })()
