@@ -16,9 +16,9 @@ CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, heigh
     dy += px;
   }
 
-  c.timeEnd()
-  c.log('%cDebug', 'color:#0093EF;font-weight:bold', `id:{idx}`)
-  c.log('%cDebug %cSuccessful', 'color:#0093EF;font-weight:bold', 'color:#F53300;font-weight:bold', 'draw an Image')
+  console.timeEnd()
+  console.log('%cDebug', 'color:#0093EF;font-weight:bold', `id:{idx}`)
+  console.log('%cDebug %cSuccessful', 'color:#0093EF;font-weight:bold', 'color:#F53300;font-weight:bold', 'draw an Image')
 }
 
 CanvasRenderingContext2D.prototype.drawGeneratedImage = function(generatedData) {
