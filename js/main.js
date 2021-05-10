@@ -24,10 +24,11 @@
     const cont = canv.getContext('2d')
 
     const myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
-    myOnnxSession.loadModel('../generator.onnx')
-    const model = myOnnxSession
-
-    // Bind
-    document.querySelector('button').addEventListener('click', () => generate(model))
+    myOnnxSession.loadModel('../generator.onnx').then(() => {
+      const model = myOnnxSession
+      const button = document.querySelector('button')
+      button.addEventListener('click', () => generate(model))
+      button.removeAttribute('disabled')
+    })
   }
 })()
