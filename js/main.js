@@ -1,17 +1,14 @@
 (() => {
   onload = () => {
-    let [canv, cont] = [null, null]
     const noise_size = 256
+    const canv = document.getElementById('output')
+    const cont = canv.getContext('2d')
 
+    myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
+    myOnnxSession.loadModel('../generator.onnx')
+    const model = myOnnxSession
+    
     const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random())
-
-    const init = () => {
-      canv = document.getElementById('output')
-      cont = canv.getContext('2d')
-      myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
-      myOnnxSession.loadModel('../generator.onnx')
-      model = myOnnxSession
-    }
 
     const generate = () => {
       console.log('called generate function')
