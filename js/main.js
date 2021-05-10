@@ -9,7 +9,7 @@
       canv = document.getElementById('output')
       cont = canv.getContext('2d')
       myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
-      myOnnxSession.loadModel('./generator.onnx')
+      myOnnxSession.loadModel('../generator.onnx')
       model = myOnnxSession
     }
 
