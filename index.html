@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <META charset="UTF-8">
-    <!-- Load ONNX.js -->
-    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Run onnx model demo</title>
   </head>
 <body>
-  <canvas id="output" width="128px" height="128px"></canvas>
-  <button>generate</button>
+  <canvas width="128px" height="128px"></canvas>
+  <button disabled>generate</button>
   
+  <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
   <script src="js/main.js"></script> 
   <script src="js/canvasKit.js"></script> 
   <script src="js/draw.js"></script> 

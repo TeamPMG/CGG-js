@@ -41,7 +41,7 @@ CanvasRenderingContext2D.prototype.drawFillBox = function(x, y, size, color){
 }
 
 CanvasRenderingContext2D.prototype.drawText = function(text, x, y, font, bold, size, color, center, fill){
-  !fill && this.lineWidth = bold
+  !fill && (this.lineWidth = bold)
   center && (x -= text.length / 2 * (size / 2))
 
   this.beginPath()

@@ -16,12 +16,13 @@ CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, heigh
     dy += px;
   }
 
-  c.timeEnd()
-  c.log('%cDebug', 'color:#0093EF;font-weight:bold', `id:{idx}`)
-  c.log('%cDebug %cSuccessful', 'color:#0093EF;font-weight:bold', 'color:#F53300;font-weight:bold', 'draw an Image')
+  console.timeEnd()
+  console.log('%cDebug', 'color:#0093EF;font-weight:bold', `id:{idx}`)
+  console.log('%cDebug %cSuccessful', 'color:#0093EF;font-weight:bold', 'color:#F53300;font-weight:bold', 'draw an Image')
 }
 
-const drawGeneratedImage = (generatedData) => {
-  cont.clearRect(0, 0, canv.width, canv.height)
-  cont.drawImageByData(generatedData, wid, hig, 0, 128/8, 0, 0)
+CanvasRenderingContext2D.prototype.drawGeneratedImage = function(generatedData) {
+  this.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  this.drawImageByData(generatedData, wid, hig, 0, 128 / 8, 0, 0)
 }
+
