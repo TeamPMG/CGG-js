@@ -24,7 +24,7 @@
     const cont = canv.getContext('2d')
 
     const myOnnxSession = new onnx.InferenceSession({backendHint: 'webgl'})
-    myOnnxSession.loadModel('../generator.onnx').then(() => {
+    myOnnxSession.loadModel('https://github.com/TeamPMG/CGG-js/blob/main/generator.onnx').then(() => {
       const model = myOnnxSession
       const button = document.querySelector('button')
       button.addEventListener('click', () => generate(model))
