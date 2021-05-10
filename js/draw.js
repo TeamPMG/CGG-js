@@ -1,6 +1,6 @@
 const [wid, hig] = [8, 8]
 
-CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, height, find, px, x, y){
+CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, height, find, px, x, y) {
   let dy = y + px / 2
   let idx = find
   const rgb = []
