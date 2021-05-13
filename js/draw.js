@@ -1,4 +1,4 @@
-const [imageWidth, imageHeight] = [8, 8]
+const [imageWidth, imageHeight] = [32, 32]
 
 CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, height, find, px, x, y) {
   let dy = y + px / 2
@@ -23,6 +23,6 @@ CanvasRenderingContext2D.prototype.drawImageByData = function(data, width, heigh
 
 CanvasRenderingContext2D.prototype.drawGeneratedImage = function(generatedData) {
   this.clearRect(0, 0, this.canvas.width, this.canvas.height)
-  this.drawImageByData(generatedData, imageWidth, imageHeight, 0, 128 / 8, 0, 0)
+  this.drawImageByData(generatedData, imageWidth, imageHeight, 0, 128 / 32, 0, 0)
 }
 
