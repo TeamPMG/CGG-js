@@ -1,4 +1,6 @@
-noiseSize = 128
+const noiseSize = 128;
+const truncationThreshold  = 2;
+
 (() => {
   onload = () => {    
     const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random())
@@ -8,7 +10,12 @@ noiseSize = 128
       console.log('called generate function')
 
       const noise = new Float32Array(noiseSize)
-      for (let i = 0; i < noiseSize; i++) noise[i] = rnorm()
+      for (let i = 0; i < noiseSize; i++) {
+        noise[i] = rnorm()
+        if (noise[i] > truncationThreshold) noise[i] = truncationThreshold;
+        if (noise[i] < -truncationThreshold) noise[i] = -truncationThreshold;
+
+      }
       const tensorNoise = new onnx.Tensor(noise, 'float32', [1, noiseSize])
 
       model.run([tensorNoise]).then((output) => {
