@@ -1,5 +1,5 @@
-const noiseSize = 128;
-const truncationThreshold  = 1;
+const noiseSize = 512;
+const truncationThreshold  = 1.0;
 
 (() => {
   onload = () => {    
@@ -12,7 +12,12 @@ const truncationThreshold  = 1;
       const noise = new Float32Array(noiseSize)
       for (let i = 0; i < noiseSize; i++) {
         noise[i] = rnorm();
-        if (truncationThreshold != 0) while (Math.abs(noise[i]) > truncationThreshold) noise[i] = rnorm();
+        if (truncationThreshold != 0) {
+          //if (Math.abs(noise[i]) > truncationThreshold) noise[i] = truncationThreshold * noise[i] / Math.abs(noise[i])
+          while (Math.abs(noise[i]) > truncationThreshold) {
+            noise[i] = rnorm();
+          }
+        }
       }
       console.log(noise)
       const tensorNoise = new onnx.Tensor(noise, 'float32', [1, noiseSize])
