@@ -1,5 +1,5 @@
 const noiseSize = 512;
-const truncationThreshold  = 1.0;
+const truncationThreshold  = 100;
 
 (() => {
   onload = () => {    
