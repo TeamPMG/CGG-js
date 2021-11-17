@@ -1,4 +1,4 @@
-const noiseSize = 512;
+const noiseSize = 128;
 const truncationThreshold  = 100;
 
 (() => {
