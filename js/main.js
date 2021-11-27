@@ -1,5 +1,5 @@
-const noiseSize = 128;
-const truncationThreshold  = 100;
+const noiseSize = 512;
+const truncationThreshold  = 2;
 
 (() => {
   onload = async () => {
@@ -22,7 +22,8 @@ const truncationThreshold  = 100;
       const tensorNoise = new ort.Tensor('float32', noise, [1, noiseSize]);
       model.run({'x.1':tensorNoise}).then((output) => {
         console.log('finish running the model');
-        const outputTensor = output['1805']
+        console.log(output)
+        const outputTensor = output['2063']
         context.drawGeneratedImage(generatedImage = outputTensor.data);
         console.log('result', outputTensor);
       });
