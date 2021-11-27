@@ -3,7 +3,7 @@ const truncationThreshold  = 2;
 
 (() => {
   onload = async () => {
-    const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random())
+    const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random());
 
     const generate = (model = null, context = null) => {
       if (model === null || context === null) return false
@@ -22,8 +22,7 @@ const truncationThreshold  = 2;
       const tensorNoise = new ort.Tensor('float32', noise, [1, noiseSize]);
       model.run({'x.1':tensorNoise}).then((output) => {
         console.log('finish running the model');
-        console.log(output)
-        const outputTensor = output['2063']
+        const outputTensor = output['2063']; //レイヤーの名前？
         context.drawGeneratedImage(generatedImage = outputTensor.data);
         console.log('result', outputTensor);
       });
