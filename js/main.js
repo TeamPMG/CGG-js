@@ -1,13 +1,7 @@
-const noiseSize = 512;
-const truncationThreshold  = 2;
-
 (() => {
   onload = async () => {
     const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random());
-
-    const generate = (mapping = null, generator = null, context = null) => {
-      if (mapping === null || generator === null || context === null) return false
-      console.log('called generate function');
+    const generateNoise = (noiseSize, truncationThreshold) =>  {
       const noise = new Float32Array(noiseSize);
       for (let i = 0; i < noiseSize; i++) {
         noise[i] = rnorm();
@@ -18,25 +12,34 @@ const truncationThreshold  = 2;
           }
         }
       }
+      return noise
+    }
 
-      const tensorNoise = new ort.Tensor('float32', noise, [1, noiseSize]);
-      mapping.run({'x.1':tensorNoise}).then((output) => {
-        const outputTensor = output['80'].data; //レイヤーの名前？
-        const style = new Float32Array(noiseSize * 8);
-        for (let i = 0; i < noiseSize; i++) {
-          for (let j = 0; j < 8; j++){
-            style[i + j * noiseSize] = outputTensor[i];
-          }
+    const generate = async (mapping = null, generator = null, context = null) => {
+      const noiseSize = 512;
+      const truncationThreshold  = 2;
+
+      if (mapping === null || generator === null || context === null) return false
+      console.log('called generate function');
+      const noises = []
+      for (let i = 0; i < 8; i++) {
+        noises[i] = generateNoise(noiseSize, truncationThreshold);
+      }
+      const style = new Float32Array(noiseSize * 8);
+      for (let i = 0; i < 8; i++) {
+        const tensorNoise = new ort.Tensor('float32', noises[i], [1, noiseSize]);
+        const output = await mapping.run({'x.1':tensorNoise});
+        const outputTensor = output['80'].data;
+        for (let j = 0; j < noiseSize; j++) {
+          style[i * noiseSize + j] = outputTensor[j];
         }
-        const styleTensor = new ort.Tensor('float32', style, [8, 1, noiseSize]);
+      }
 
-        generator.run({'0':styleTensor}).then((output) => {
-          console.log('finish running the model');
-          const outputTensor = output['1963']; //レイヤーの名前？
-          console.log(output)
-          context.drawGeneratedImage(generatedImage = outputTensor.data);
-          console.log('result', outputTensor);
-        });
+      const styleTensor = new ort.Tensor('float32', style, [8, 1, noiseSize]);
+      generator.run({'0':styleTensor}).then((output) => {
+        console.log('finish running the model');
+        const outputTensor = output['1963']; //レイヤーの名前？
+        context.drawGeneratedImage(generatedImage = outputTensor.data);
       });
     }
     
