@@ -14,17 +14,22 @@
       }
       return noise
     }
+    const noises = []
+    noises[0] = generateNoise(512, 1);
+    for (let i = 0; i < 8; i++) {
+      noises[i] = noises[0];//generateNoise(512, 2);
+    }
 
     const generate = async (mapping = null, generator = null, context = null) => {
+      const styleChangePoint = document.querySelector('#changeStyle').value
       const noiseSize = 512;
-      const truncationThreshold  = 2;
+      const truncationThreshold  = 1;
 
-      if (mapping === null || generator === null || context === null) return false
-      console.log('called generate function');
-      const noises = []
-      for (let i = 0; i < 8; i++) {
+      for (let i = styleChangePoint; i < 8; i++) {
         noises[i] = generateNoise(noiseSize, truncationThreshold);
       }
+      if (mapping === null || generator === null || context === null) return false
+      console.log('called generate function');
       const style = new Float32Array(noiseSize * 8);
       for (let i = 0; i < 8; i++) {
         const tensorNoise = new ort.Tensor('float32', noises[i], [1, noiseSize]);
