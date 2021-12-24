@@ -1,5 +1,6 @@
 (() => {
   onload = async () => {
+    const noiseSize = 512;
     const rnorm = () => Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random());
     const generateNoise = (noiseSize, truncationThreshold) =>  {
       const noise = new Float32Array(noiseSize);
@@ -15,15 +16,14 @@
       return noise
     }
     const noises = []
-    noises[0] = generateNoise(512, 1);
+    noises[0] = generateNoise(512, 0);
     for (let i = 0; i < 8; i++) {
       noises[i] = noises[0];//generateNoise(512, 2);
     }
 
     const generate = async (mapping = null, generator = null, context = null) => {
       const styleChangePoint = document.querySelector('#changeStyle').value
-      const noiseSize = 512;
-      const truncationThreshold  = 1;
+      const truncationThreshold  = document.querySelector('#truncationThreshold').value;
 
       for (let i = styleChangePoint; i < 8; i++) {
         noises[i] = generateNoise(noiseSize, truncationThreshold);
