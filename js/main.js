@@ -22,8 +22,8 @@
     }
 
     const generate = async (mapping = null, generator = null, context = null) => {
-      const styleChangePoint = document.querySelector('#changeStyle').value
-      const truncationThreshold  = document.querySelector('#truncationThreshold').value;
+      const styleChangePoint = document.querySelector('#styleBar').value
+      const truncationThreshold  = document.querySelector('#thresholdBar').value;
 
       for (let i = styleChangePoint; i < 8; i++) {
         noises[i] = generateNoise(noiseSize, truncationThreshold);
@@ -57,5 +57,17 @@
     const button = document.querySelector('button');
     button.addEventListener('click', () => generate(mapping, generator, context));
     button.removeAttribute('disabled');
+
+
+    //thresholdやstyleの表示
+    const threshold = document.querySelector('#threshold');
+    const thresholdBar = document.querySelector('#thresholdBar');
+    threshold.innerText = thresholdBar.value;
+    thresholdBar.addEventListener('input', () => {threshold.innerText = thresholdBar.value;});
+
+    const style = document.querySelector('#style');
+    const styleBar = document.querySelector('#styleBar');
+    style.innerText = styleBar.value;
+    styleBar.addEventListener('input', () => {style.innerText = styleBar.value;});
   }
 })()
